@@ -1,7 +1,7 @@
-#g90 Server
+# g90 Server
 
-##Instructions
-###Monday:
+## Instructions
+### Monday:
 - Create a database, you can find the name of the database-to-be-created in the knexfile.
     - $createdb db_name
 - Take existing file structure, create migrations and seeds
