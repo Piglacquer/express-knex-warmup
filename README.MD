@@ -22,7 +22,7 @@
 - Initialize knex, a tool to write sql queries for our database
     - $knex init 
 
-- Notice that it created some files. What are they?
+- Notice that it created a file.
 
 - Update your knex file with the correct development and production information 
     - Notice that everything is written inside of module.exports, why?
