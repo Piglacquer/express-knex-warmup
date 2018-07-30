@@ -10,7 +10,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "knex": "^0.15.2",
-    "pg": "^7.4.3"
   }
 }

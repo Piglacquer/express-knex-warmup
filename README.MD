@@ -42,7 +42,7 @@
 
 - Now we will move onto creating our migrations and seeds. 
 
-- Create a migration
+- Create a migration (column names and types, also called schema)
     - $knex migrate:make migration_name
     - make your migration_name something sensible, it's what the table will be called
     - inside of your migration file, create and incrementing 'id' column and 4 text columns for 'first name', 'last name', 'prior occupation', and 'hometown' (hint: don't use spaces)
@@ -60,5 +60,7 @@
 
 
 - If all went well, you successfully created the skeleton for an express // postgres // knex backend.
+
+- Don't forget to push up to your github!
 
 - Tomorrow we will write some routes and queries so you can see your data outside of psql and IN THE BROWSER!!!
