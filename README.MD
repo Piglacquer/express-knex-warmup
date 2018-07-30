@@ -45,21 +45,34 @@
 - Create a migration (column names and types, also called schema)
     - $knex migrate:make migration_name
     - make your migration_name something sensible, it's what the table will be called
-    - inside of your migration file, create and incrementing 'id' column and 4 text columns for 'first name', 'last name', 'prior occupation', and 'hometown' (hint: don't use spaces)
+    - inside of your migration file you will see exports.up and exports.down
+    - for exports.up, you want to RETURN a knex.schema that will .createTable()
+    - .createTable takes two parameters, the tablename AS A STRING, and a function
+    - the function takes one parameter, which will reference an entry into the table
+    - that function could look something like this: students => {
+        students.increments('studentId')
+    }
+    - create and incrementing 'id' column and 4 text columns for 'first name', 'last name', 'prior occupation', and 'hometown' (hint: don't use spaces)
+    - in the exports.down you want to drop the table if it exists
+    - You will RETURN a knex.schema that will .dropTableIfExists()
+    - .dropTableIfExists takes one parameter, the name of your table
 
 - Create a seed file
     - $knex seed:make seed_name
+    - I always match my seed name to the table name
+    - Look at your seed file, I think you can figure it out
+    - You shouldn't have to add an ID field (I think), it should auto-increment them.
     - the first seed you make should have your information (first name, etc.)
 
 - Run migrations and seeds
     - $knex migrate:latest
     - $knex seed:run
 
-- If those didn't work, troubleshoot
-- If they did, check out your data in psql with the commands that Peter taught you
+- If all went smoothly, check out your data in psql with the commands that Peter taught you
+- If it didn't, troubleshoot
 
 
-- If all went well, you successfully created the skeleton for an express // postgres // knex backend.
+- 🎉HOORAY🎉 You successfully created the skeleton for an express // postgres // knex backend.
 
 - Don't forget to push up to your github!
 
