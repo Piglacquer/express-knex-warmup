@@ -1,0 +1,16 @@
+{
+  "name": "g90-server",
+  "version": "1.0.0",
+  "description": "A database of g90 glory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "?????????"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "knex": "^0.15.2",
+    "pg": "^7.4.3"
+  }
+}
