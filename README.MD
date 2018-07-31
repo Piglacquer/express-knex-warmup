@@ -97,7 +97,7 @@
     - Within the response.json() pass in an object that encloses the parameter we named previously
     - If you want to be redundant with your error handling (not necessary, maybe not even a good practice), you can put a .catch after that
 
-- RUN IT! Try both your get all route, and your get one
+- RUN IT! Try both your get all route, and your get route
 
 - WOO! THEY WORKED! 🤩🎉 We have created an express server that handles requests to a couple different routes and returns data from our database!!!!!!
 
