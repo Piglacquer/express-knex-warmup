@@ -39,7 +39,8 @@
     - FAT ARRRRROOOOOW! Send back a 201 status to let the client know that all went well. Check out [http-cats](https://http.cat/) to figure out what that status code means.
     - We're not QUITE done, chain a .json() method onto that status you sent, and pass it an object with our parameter inside of it
 
-- BADABING BADABOOM! Post route... done. 🧚‍♂️
+- BADABING BADABOOM! 🧚‍♂️ Post route... done. 
+- TEST IT WITH POSTMAN TO MAKE SURE IT WORKS! 💋
 
 
 ### Tuesday
