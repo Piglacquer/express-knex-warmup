@@ -13,26 +13,29 @@
     - Fat... arrow.... open those curlies and lets go to our queries file and write the query that we want to pass into the route.
 
 - In the queries file... we need to make a new method in our module.exports
-    - Name it something that MAKES SENSE, we're posting a student to our database
+    - Name it something SENSICAL, we're posting a student to our database
     - Pass it one parameter, something like (student) or (cohortMate)
-    - Now you'll notice a pattern in our queries... First we need to return database('yourTablename')
+    - Now you'll notice a pattern in our queries... First we need to RETURN database('yourTablename')
     - Remember, database is just the name that we gave our database-connection requirement on line 1
-    - So we return database('yourTablename'), then we need to insert whatever we passed in as a parameter
-    - Then, to be able to see what went into our table, we want to tag a .returning() onto the end
-    - We need to tell it what it's returning, however, so let's pass in ('*')
-    - That will give us an array that has an object in it, so we'll throw a .then on the end
-    - Inside of that .then pass it one parameter that will represent that array, fat arrow and then that parameter at the 0 index
+    - We need to .INSERT whatever we passed in as a parameter
+    - To be able to see what went into our table, we want to tag a .returning() onto the end
+    - We need to tell it what it's returning, so let's pass in ('*')
+    - If you'll recall your SQL lesson with Peter, * means 'all' in sql
+    - That will give us an array that has an object in it
+    - We don't want no damn array, so chain a .then() onto that thang
+    - Inside of the .then, pass it one parameter that will represent the array
+    - FAT ARROW and then return that parameter at the 0 index (fat arrow functions have an implicit return)
     - That should do it for our query!!!
 
 - Back in our app.js, where we are using express to handle the requests and responses to our server, we need to finish off our post route.
     - Lets put some code in those empty curlies!
-    - The first thing we want to do is call queries and then dot notate into it and call the query we just made
+    - The first thing we want to do is call queries, dot notate into it, and call the query we just made
     - Remember we need to pass something into that method
     - Important aside: Posting to the database requires the client to send the data-to-be-posted in the body of it's request
     - Important aside pt2: What are the parts of the request again? Headers and body (params are part of the body, but not 'inside' of the body)
     - Right, so we need to pass in the request.body (yep, the request is an object)
-    - So, we've executed our query that is going to insert the new entry send back an object of what we just put in the database so we can see it
-    - Chain a .then onto that and give it one parameter, which will represent the data our query is giving back to us
+    - We've executed our query which will insert the new entry and send back an object of what we just put in the database so we can see it
+    - Chain a .then and give it one parameter, which will represent the data our query is giving back to us
     - FAT ARRRRROOOOOW! Send back a 201 status to let the client know that all went well. Check out [http-cats](https://http.cat/) to figure out what that status code means.
     - We're not QUITE done, chain a .json() method onto that status you sent, and pass it an object with our parameter inside of it
 
