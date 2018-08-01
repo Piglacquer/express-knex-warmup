@@ -1,6 +1,44 @@
 # g90 Server
 
 ## Instructions
+### Wednesday
+- That's 2 out of five routes and queries done for this app! 💅 
+
+- If you haven't caught up, go ahead and do that.
+
+- Lets.... write a post route!
+    - Similarly to our previous two routes, we need to make another app.method, instead of get, it will be an app.post
+    - WHAT DOES THIS METHOD TAKE? TWO PARAMETERS, A ROUTE AND A FUNCTION
+    - WHAT PARAMETERS DOES THAT FUNCTION TAKE? REQUEST, RESPONSE, AND NEXT
+    - Fat... arrow.... open those curlies and lets go to our queries file and write the query that we want to pass into the route.
+
+- In the queries file... we need to make a new method in our module.exports
+    - Name it something that MAKES SENSE, we're posting a student to our database
+    - Pass it one parameter, something like (student) or (cohortMate)
+    - Now you'll notice a pattern in our queries... First we need to return database('yourTablename')
+    - Remember, database is just the name that we gave our database-connection requirement on line 1
+    - So we return database('yourTablename'), then we need to insert whatever we passed in as a parameter
+    - Then, to be able to see what went into our table, we want to tag a .returning() onto the end
+    - We need to tell it what it's returning, however, so let's pass in ('*')
+    - That will give us an array that has an object in it, so we'll throw a .then on the end
+    - Inside of that .then pass it one parameter that will represent that array, fat arrow and then that parameter at the 0 index
+    - That should do it for our query!!!
+
+- Back in our app.js, where we are using express to handle the requests and responses to our server, we need to finish off our post route.
+    - Lets put some code in those empty curlies!
+    - The first thing we want to do is call queries and then dot notate into it and call the query we just made
+    - Remember we need to pass something into that method
+    - Important aside: Posting to the database requires the client to send the data-to-be-posted in the body of it's request
+    - Important aside pt2: What are the parts of the request again? Headers and body (params are part of the body, but not 'inside' of the body)
+    - Right, so we need to pass in the request.body (yep, the request is an object)
+    - So, we've executed our query that is going to insert the new entry send back an object of what we just put in the database so we can see it
+    - Chain a .then onto that and give it one parameter, which will represent the data our query is giving back to us
+    - FAT ARRRRROOOOOW! Send back a 201 status to let the client know that all went well. Check out [http-cats](https://http.cat/) to figure out what that status code means.
+    - We're not QUITE done, chain a .json() method onto that status you sent, and pass it an object with our parameter inside of it
+
+- BADABING BADABOOM! Post route... done. 🧚‍♂️
+
+
 ### Tuesday
 - We got our skeleton built! 🎉HOORAY🎉! If you haven't packed your seed file full of your classmates, put those humans in there (representations of them should be in slack).
 - Now, we have no way of looking at the data outside of psql. Lets get our application ready to accept some requests!
