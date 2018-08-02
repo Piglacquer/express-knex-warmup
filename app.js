@@ -1,10 +1,11 @@
 const express
-const bodyParser
-const cors
 const app
 
-app.use()
-app.use()
 
 
-app.get()
+// We will be writing our routes in this file
+// example: app.get()
+
+
+
+module.exports = app
