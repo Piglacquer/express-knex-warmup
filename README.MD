@@ -1,6 +1,62 @@
 # g90 Server
 
 ## Instructions
+### Thursday
+- Welcome, welcome, welcome! Day four of building our express/knex/psql backend!
+
+- As with the other days, if you haven't completed all of our routes and queries up until this point, get that done before you progress.
+
+- Lets start out with the delete route
+    - This route is VERY similar to the get-by-id route
+    - So, let's go to our app.js, where we are writing our routes
+    - The http method for this is delete, so we need an app.delete()
+    - You know what we pass in there right? A route and a callback function
+    - The route is going to be the same as our get-by-id route, so '/:id'
+    - Next we need a callback function that we're going to pass all three parameters into (request, response, next)
+    - Open those curlies and lets go to our queries file
+
+- In our queries file, lets make another function within your module.exports
+    - As with all of our other functions, give it a sensical name
+    - We are going to pass in the (id)
+    - Again, we are going to RETURN database('tablename')
+    - Remember, database is what we called our database-connection file
+    - We need to say where to delete, so .where('id', id)
+    - It will find where the key 'id' is equal to the parameter we passed in
+    - Chain a .del() on there and we're done with the query
+
+- Back to app.js!
+    - We need to call queries.whateverYouNamedYourFunction and pass in (request.params.id)
+    - Chain a .then() and give it an empty parameter
+    - Fat arrow! Then send a response status of 200
+    - DONE
+
+- Now for the Put
+    - Make another route with app.put()
+    - Pass in a route, we can just use '/', then another callback function with (request, response, next)
+    - Open those curlies and lets go back to our queries file
+
+- In our queries file, make another method within your module.exports
+    - SENSICAL NAME
+    - We're going to pass in (id, name)
+    - In this put, we're only going to change the name of the person
+    - Open those curlies and RETURN database('tablename')
+    - Where do we want to update? .where('id', id)
+    - .update(name)
+    - We then want to return the object we've updated, so .returning('*')
+    - Chain a .then(record => record[0])
+
+- Back to our app.js!
+    - Call queries.yourFunctionName()
+    - Pass in request.body.id and request.body.name
+    - When you make a call to this route, you need to make sure to include both of these items
+    - Chain a .then(updatedUser => res.json({updatedUser})
+
+- BOOM! We've got all five of our basic routes! Test them all and check their behavior. Put in particular has some interesting characterics.
+
+- If you're having trouble, ask your neighbor or us instructors!
+
+- 🎉CONGRATS ON MAKING A FULLY CAPABLE, COMMUNICABLE, WRITEABLE API!🎉
+
 ### Wednesday
 - That's 2 out of five routes and queries done for this app! 💅 
 
