@@ -41,7 +41,7 @@
     - In this put, we're only going to change the name of the person
     - Open those curlies and RETURN database('tablename')
     - Where do we want to update? .where('id', id)
-    - .update(name)
+    - .update('whateverYourColumnForNameIs', name)
     - We then want to return the object we've updated, so .returning('*')
     - Chain a .then(record => record[0])
 
