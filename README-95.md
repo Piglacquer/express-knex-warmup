@@ -66,6 +66,19 @@
   
   - ```knex migrate:make students```
   - This will make a migration file, the long string of digits before "students" is a timestamp. These files run in chronological order.
+  - Open this file (it's in the migrations folder)
+  - You'll notice that there are two sections: _exports.up_ and _exports.down_
+  - _exports.up_ will be run with ```knex migrate:latest```
+    - This command will create the table and the schema
+  - Inside your exports.up, you'll need to write the code to create the table and to create the columns and datatypes (schema) in that table
+  - ```return knex.schema.createTable('table_name', (entityInTable) => {}```
+  - You'll notice that createTable takes two arguments, the name of your table, and an anonymous function
+  - Inside of the curlies is where you write your columns
+  - Your table ALWAYS needs a primary key, more info about (primary keys)[http://www.postgresqltutorial.com/postgresql-primary-key/]
+  - ```entityInTable.increments('id')
+  - Here's some info about column types with (knex)[https://knexjs.org/#Schema-Building]
+  ---
+  
   - ```knex seed:make 01_students```
   - Your seeds will run in alphabetical order as well, so their names need to help specify their order.
   - Take a look at these files! We'll talk about these together.
