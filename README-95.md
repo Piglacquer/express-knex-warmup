@@ -13,7 +13,7 @@
     - Copy the link for your git repository
     - Go to your terminal and add a new remote called origin
     - ```git remote add origin URL```
-  - Go ahead and add your project, commit, and push to your repo
+  - Go ahead and add your project, commit, and push to your repo 💅💅💅
   ---
   
   Let's get that express server running!
@@ -27,7 +27,19 @@
     - Tell express() to listen to port and then pass in an anonymous function with ```console.log(`listening on ${port}`)``` or something like that.
     - RUN IT AND SEE IF IT WORKS!
       - ```$node app.js```
-    - All good? Add, commit, and push to github.
+    - All good? Add, commit, and push to github. 💅💅💅
+    ---
+    
+  Lets write a basic get route now.
+  - Below your app.listen give it an ```app.get()```
+  - We're going to pass in the route, which will be the base route ```'/'```
+  - We're also going to pass in an anonymous function with two parameters, request and response
+  - ES5: ```function(request, response){}```
+  - ES6: ```(request, response) => {}```
+  - Inside of that function, we're going to send a response ```res.send()
+  - We'll send back... something... how about ```('THE ROUTE WORKED!')```
+  - RUN IT! 
+  - Worked? Hooray! Add. Commit. Push. 💅💅💅
   ---
   
-  
+  Now that we have our basic express server together, we're going to start messing with knex and postgresql
