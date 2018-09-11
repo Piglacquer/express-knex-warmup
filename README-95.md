@@ -59,18 +59,15 @@
     - Connection for development: ```connection: 'postgresql://localhost/DATABASE_NAME_THAT_MAKES_SENSE_FOR_G95_DATABASE```
     - Connection for production: ```connection: process.env.DATABASE_URL```
   - Delete the rest of the key: value pairs, leaving only client and connection for both. We won't need the extra information.
-  - Knex is now configured for development and production!
+  - Knex is now configured for development and production! 💅💅💅
   ---
   
-  Next we need to make another file called ```database-connection.js```
+  Next, lets make our migrations and seeds
   
-  - We're going to use this file in our queries
-  - It's slightly confusing, so I'm going to give you the code:
-  - ```const CONFIG = require('./knexfile')[process.env.NODE_ENV || 'development']```
-  - ```module.exports = require('knex')(CONFIG)```
-  - This is confusing, but remember that module.exports in your knex file exports an OBJECT and there are two ways to look for keys in an object, dot notation and bracket notation. We're using bracket notation.
-  
-  
-  
-
+  - ```knex migrate:make students```
+  - This will make a migration file, the long string of digits before "students" is a timestamp. These files run in chronological order.
+  - ```knex seed:make 01_students```
+  - Your seeds will run in alphabetical order as well, so their names need to help specify their order.
+  - Take a look at these files! We'll talk about these together.
+  - I will be adding notes about them soon!
   
