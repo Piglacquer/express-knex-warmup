@@ -74,9 +74,9 @@
   - ```return knex.schema.createTable('table_name', (entityInTable) => {}```
   - You'll notice that createTable takes two arguments, the name of your table, and an anonymous function
   - Inside of the curlies is where you write your columns
-  - Your table ALWAYS needs a primary key, more info about (primary keys)[http://www.postgresqltutorial.com/postgresql-primary-key/]
+  - Your table ALWAYS needs a primary key, more info about [primary keys](http://www.postgresqltutorial.com/postgresql-primary-key/)
   - ```entityInTable.increments('id')
-  - Here's some info about column types with (knex)[https://knexjs.org/#Schema-Building]
+  - Here's some info about column types with [knex](https://knexjs.org/#Schema-Building)
   ---
   
   - ```knex seed:make 01_students```
