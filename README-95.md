@@ -28,7 +28,7 @@
   - RUN IT AND SEE IF IT WORKS!
     - ```$node app.js```
   - All good? Add, commit, and push to github. 💅💅💅
-    ---
+  ---
     
   Lets write a basic get route now.
   - Below your app.listen give it an ```app.get()```
@@ -50,4 +50,27 @@
   - Okay... We have our dependencies installed and have created a database. What's next?
   - ```knex init```
     - This will create a file called 'knexfile.js'
-  - Take a look at that file. It's a configuration file and it has a bunch of keys within a module.exports, which will make them available to files outside of your knexfile.
+  - Take a look at that file. It's a configuration file, and it has a bunch of keys within a module.exports, which will make them available to files outside of your knexfile.
+  - You'll notice that the top level keys are: development, staging, and production
+  - We're not going to mess with staging. Go ahead and delete everything within that key, leaving development and production
+  - Also notice that both are using 'sqlite3' as their client. Well, we're not. We're using postgresql.
+  - Change the client on both development and production to: ```'pg'```
+  - We're also going to need to change the connection for both of them.
+    - Connection for development: ```connection: 'postgresql://localhost/DATABASE_NAME_THAT_MAKES_SENSE_FOR_G95_DATABASE```
+    - Connection for production: ```connection: process.env.DATABASE_URL```
+  - Delete the rest of the key: value pairs, leaving only client and connection for both. We won't need the extra information.
+  - Knex is now configured for development and production!
+  ---
+  
+  Next we need to make another file called ```database-connection.js```
+  
+  - We're going to use this file in our queries
+  - It's slightly confusing, so I'm going to give you the code:
+  - ```const CONFIG = require('./knexfile')[process.env.NODE_ENV || 'development']```
+  - ```module.exports = require('knex')(CONFIG)```
+  - This is confusing, but remember that module.exports in your knex file exports an OBJECT and there are two ways to look for keys in an object, dot notation and bracket notation. We're using bracket notation.
+  
+  
+  
+
+  
