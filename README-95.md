@@ -25,9 +25,9 @@
     - Create another const called port that equals ```process.env.PORT``` OR ```whatever port you want it to run on```
     - A tiny bit of information on why you use process.env.PORT [heroku docs](https://devcenter.heroku.com/articles/runtime-principles#web-servers)
     - Tell express() to listen to port and then pass in an anonymous function with ```console.log(`listening on ${port}`)``` or something like that.
-    - RUN IT AND SEE IF IT WORKS!
-      - ```$node app.js```
-    - All good? Add, commit, and push to github. 💅💅💅
+  - RUN IT AND SEE IF IT WORKS!
+    - ```$node app.js```
+  - All good? Add, commit, and push to github. 💅💅💅
     ---
     
   Lets write a basic get route now.
@@ -43,3 +43,11 @@
   ---
   
   Now that we have our basic express server together, we're going to start messing with knex and postgresql
+  - Go back to your terminal and ```npm install knex pg```
+    - You can install multiple dependencies in one line 😊
+  - We also need to create a database
+    - ```createdb DATABASE_NAME_THAT_MAKES_SENSE_FOR_G95_DATABASE```
+  - Okay... We have our dependencies installed and have created a database. What's next?
+  - ```knex init```
+    - This will create a file called 'knexfile.js'
+  - Take a look at that file. It's a configuration file and it has a bunch of keys within a module.exports, which will make them available to files outside of your knexfile.
