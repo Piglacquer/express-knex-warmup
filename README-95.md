@@ -1,7 +1,7 @@
 # g95-Database
 ## Welcome to the step-by-step instructions for building our very own g95 database and server with Node, Express, Knex, and Postgresql!
 
-### Tuesday
+## Tuesday
   We're going to start off by creating a basic server with Node and Express.
   - Create a new folder from within your terminal!
   - Navigate into that folder
@@ -15,7 +15,8 @@
     - ```git remote add origin URL```
   - Go ahead and add your project, commit, and push to your repo 💅💅💅
   ---
-  
+ 
+### Express Setup
   Let's get that express server running!
   - Remember what basic dependencies our express server needs?
   - ```npm install express```, that's it!
@@ -41,7 +42,8 @@
   - RUN IT! 
   - Worked? Hooray! Add. Commit. Push. 💅💅💅
   ---
-  
+
+### Knex and PostgreSQL setup (in project)
   Now that we have our basic express server together, we're going to start messing with knex and postgresql
   - Go back to your terminal and ```npm install knex pg```
     - You can install multiple dependencies in one line 😊
@@ -62,6 +64,7 @@
   - Knex is now configured for development and production! 💅💅💅
   ---
   
+### Migrations
   Next, lets make our migrations and seeds
   
   - ```knex migrate:make students```
@@ -73,14 +76,42 @@
   - Inside your exports.up, you'll need to write the code to create the table and to create the columns and datatypes (schema) in that table
   - ```return knex.schema.createTable('table_name', (entityInTable) => {}```
   - You'll notice that createTable takes two arguments, the name of your table, and an anonymous function
-  - Inside of the curlies is where you write your columns
+  - 'entityInTable' is in place of whatever you want to call a specific entity in your table
+    - For instance, if your table is named 'students', a good specific entity-name would be 'student'.
+  - Inside of the curlies is where you write the code to create your columns.
   - Your table ALWAYS needs a primary key, more info about [primary keys](http://www.postgresqltutorial.com/postgresql-primary-key/)
-  - ```entityInTable.increments('id')
-  - Here's some info about column types with [knex](https://knexjs.org/#Schema-Building)
+  - ```entityInTable.increments('id')```
+  - Here's some info about column types with [knex](https://knexjs.org/#Schema-Building).
+  - And here's an example with the id column included in the migration:
+  ```javascript
+    return knex.schema.createTable('table_name', (entityInTable) => {
+      entityInTable.increments('id')
+    }
+  ```
   ---
-  
+
+### Seeds
   - ```knex seed:make 01_students```
-  - Your seeds will run in alphabetical order as well, so their names need to help specify their order.
-  - Take a look at these files! We'll talk about these together.
-  - I will be adding notes about them soon!
+  - Your seeds will run in alphabetical order, so their names need to help specify their order.
+  - If you look at your seed file you'll see something like this:
+    ```javascript
+    exports.seed = function(knex, Promise) {
+    // Deletes ALL existing entries
+      return knex('table_name').del()
+      .then(function () {
+    // Inserts seed entries
+        return knex('table_name').insert([
+          {id: 1, colName: 'rowValue1'},
+          {id: 2, colName: 'rowValue2'},
+          {id: 3, colName: 'rowValue3'}```
+         ]);
+        });
+       };```
+  - You will replace ```table_name``` with the name of the table you wish to run this seed on. Pretty simple, right?
+  - If you used ```entityInTable.increments('id')```, you won't need to pass an id into your seed file. It will assign that automatically.
+  - Make sure that your column names match between your migration file and your seed file! Copy+paste!
   
+  ---
+  ### Queries
+  We now have a new table in our database, with a schema, and some data. Lets make some queries with Knex to reach into that database and grab some data for us.
+  - We'll start with 
