@@ -150,6 +150,7 @@
   - We're saying database only because that's what we named the variable in our Knex setup step
   - THATS IT!
   - Each query we write will share a very similar form. We don't need a function keyword before function name, and we always start with a return.💅💅💅
+  - Knex query resources: [Knex Cheatsheet](https://devhints.io/knex), [Knex Docs](https://knexjs.org/#Builder-select).
   
   ---
   ### Running Queries with Express
