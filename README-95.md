@@ -1,6 +1,57 @@
 # g95-Database
 ## Welcome to the step-by-step instructions for building our very own g95 database and server with Node, Express, Knex, and Postgresql!
+---
+## Wednesday
 
+Today we're going to be creating some student data objects, changing our migrations, and adding to our seeds.
+  - First thing first, everyone should create an object for themselves and slack it out in ONE thread.
+  - Here's the format should be:
+    ```{firstName: '', lastName: '', hometown: '', prevOccupation: '', favoriteNum: int, pastime: ''}```
+  - Once you've done that and you're all caught up with what we did yesterday, it's time to change our seeds and migrations to match this new data format.
+  - When changing your migration, remember that we HAVE to have an id:
+    ```entityInTable.increments('id')```
+  - We _don't_ have to add an id into our student objects because it's done automatically once you set that column up in the migration.
+  - We _do_ need to add columns for all these new keys we expect our entities to have.
+  - Using the added resource about knex columns in the __Migrations__ section, add the appropriate columns to your migration file.
+  - Once you're done, rollback your original migration, then RUN THE LATEST ONE!
+  - It worked? IT WORKED!
+  - Add. Commit. Push.💅💅💅
+  ---
+  
+  Next we need to take all the data from Slack, and paste it into our seed file.
+  - Hopefully, everyone copy and pasted the code snippet, and the format is the same throughout.
+  - Paste each student entity into your seed file, check for formatting errors, then... RUN THE SEED!
+  - Now we have WAY more data in our database.
+  - Add, commit, and puuuuuush! 💅💅💅
+  ---
+  Now, I want you to write another query and another route.
+  - This query and route will be used to get a student by their first name and send it to the client.
+  
+  ### Get By Name Query
+  - In your queries file, go ahead and make a new query function called 'read'
+  - read will take one parameter, firstName
+    ```read(firstName){}```
+  - In this query, we're going to want to return the entity in the table where firstName is equal to firstName
+  - Using the resources I added for writing queries (in the Writing Queries section), and the knowledge you have about basic query structure, finish this one on your own.
+  - I will add a code snippet later on.
+  
+  ### Get By Name Route
+  We've written our query, so let's go back to our app.js and make use of it!
+  - Make another get route, but this time we're going to do something a little bit different
+  ```app.get('/:firstName', (request, response) => {})```
+  - Notice the difference? There's now a colon in our route, this is allows us to access that piece of the url and pass it into our query
+  - To see this, I just want you to console.log(request.params) within that route.
+  ```app.get('/:firstName', (request, response) => console.log(request.params)```
+  - Run it, and in the browser, go to localhost:yourPort/asdf
+  - Check the console, and you should see something like this: ```{firstName: asdf}```
+  - Guess how we can use this in our query!!!!
+  - Delete your console.log, bring in the new query you wrote, and pass it ```req.params.firstName```
+  - Follow the pattern from the previous get route!
+  - Once you're done, go to localhost:yourPort/Joey and see if it works!
+  - If all went well, you should now be able to grab a student by their first name!!!
+  - WOO! Add, commit, push. 💅💅💅
+  ---
+  
 ## Tuesday
   We're going to start off by creating a basic server with Node and Express.
   - Create a new folder from within your terminal!
@@ -168,6 +219,4 @@
   - Add. Commit. Push. 💅💅💅
 
   ---
-## Wednesday
 
-Today we're going to be creating some student data objects, changing our migrations, and adding to our seeds.
