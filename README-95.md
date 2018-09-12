@@ -62,6 +62,7 @@
     - Connection for production: ```connection: process.env.DATABASE_URL```
   - Delete the rest of the key: value pairs, leaving only client and connection for both. We won't need the extra information.
   - Knex is now configured for development and production! 💅💅💅
+  - Add. Commit. Push.
   ---
   
 ### Migrations
@@ -88,6 +89,7 @@
       entityInTable.increments('id')
     }
   ```
+  - Add. Commit. Push.💅💅💅
   ---
 
 ### Seeds
@@ -110,8 +112,61 @@
   - You will replace ```table_name``` with the name of the table you wish to run this seed on. Pretty simple, right?
   - If you used ```entityInTable.increments('id')```, you won't need to pass an id into your seed file. It will assign that automatically.
   - Make sure that your column names match between your migration file and your seed file! Copy+paste!
+  - Everything behaving the way it should? Add. Commit. Push.💅💅💅
   
   ---
-  ### Queries
+  ### Queries Setup
   We now have a new table in our database, with a schema, and some data. Lets make some queries with Knex to reach into that database and grab some data for us.
-  - We'll start with 
+  - We'll start by creating a queries file in the top level of our project called queries.js.
+  - Now, we need to require in our knexfile.js. BUT, we don't want to import all of it.
+    - We want to import only the production config OR the development config.
+    - When we deploy to Heroku, Heroku creates an environment variable (accessed with process.env) called ```NODE_ENV```
+    - If our database is being hosted on Heroku, by default that variable will evaluate to ```'production'```.
+    - We don't want to write ```'production'```, because the only time we want it to run the production configuration is when it's actually hosted on Heroku.
+  - So, we want to import the correct configuration of knex.
+  - That line of code looks like this:
+    ```const connection = require('./knexfile)[process.env.NODE_ENV || 'development'] ```
+  - Remember, our knexfile exports an object, and we can use [bracket] notation to dive into that object.
+  - Next we need to create another variable that will bring in the knex library and give it that connection as well
+    ```const database = require('knex')(connection)```
+  - With those two variables in place, we can start writing our queries
+  - Create a module.exports statement, like this:
+    ```module.exports = {}```
+  - Inside of those curlies is where we will write our queries.💅💅💅
+  
+  ---
+  ### Writing Queries
+  Our queries file is set up, so lets go ahead and write our first query.
+  - We'll call it: listAll
+    ```javascript
+    module.exports = {
+      listAll(){
+            
+      }
+    }```
+  - Inside of ALL of your queries, you will start with a ```return```
+  - Since we want to list all of the entities in our database, we can just return the the whole table
+    ``` return database('students')```
+  - We're saying database only because that's what we named the variable in our Knex setup step
+  - THATS IT!
+  - Each query we write will share a very similar form. We don't need a function keyword before function name, and we always start with a return.💅💅💅
+  
+  ---
+  ### Running Queries with Express
+  We've now written our first query, so lets use it to serve some data through our Express server!
+  - Go back to app.js
+  - Towards the top, where we were requiring in Express and invoking it, we want to also require in our queries file.
+    ```const queries = require('./queries')```
+  - Now we have access to everything within the module.exports inside of queries.js!
+  - Inside of the app.get we wrote when setting up the server, we're going to utilize that query.
+  - Delete: ```res.send('THE ROUTE WORKED')```
+  - Now we will call our query, and send the data back to the client:
+    ```queries.listAll().then(students => res.send(students))```
+  - Save, and run it! If you don't remember where to go once it's running, check the port number you assigned at the top of your app.js
+  - DID YOU GET THE DATA? YOU GOT THE DATA!
+  - Add. Commit. Push. 💅💅💅
+
+  ---
+## Wednesday
+
+Today we're going to be creating some student data objects, changing our migrations, and adding to our seeds.
