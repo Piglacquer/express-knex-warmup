@@ -3,7 +3,7 @@
 ---
 ## Wednesday
 
-Today we're going to be creating some student data objects, changing our migrations, and adding to our seeds.
+Today we're going to start by creating some student data objects, changing our migrations, and adding to our seeds.
   - First thing first, everyone should create an object for themselves and slack it out in ONE thread.
   - Here's the format should be:
     ```{firstName: '', lastName: '', hometown: '', prevOccupation: '', favoriteNum: int, pastime: ''}```
