@@ -1,6 +1,6 @@
 # g95-Database
 ## Welcome to the step-by-step instructions for building our very own g95 database and server with Node, Express, Knex, and Postgresql!
----
+
 ## Wednesday
 
 Today we're going to start by creating some student data objects, changing our migrations, and adding to our seeds.
