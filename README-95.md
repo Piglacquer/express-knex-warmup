@@ -21,11 +21,22 @@ Let's start with the query to 'insert' something into our table.
       .insert(callItWhatYouWill)
 ```
 - Boom, query done.
-- If, by any chance, you wanted to return the object you're inserting into the table, you can tag a ```returning('*')``` onto the end.
+- If, by any chance, you wanted to return the object you're inserting into the table, you can tag a ```.returning('*')``` onto the end.
 ---
 
 ### Route for Post
 
+Head back over to your app.js!
+
+- What HTTP method do we use to add to a server or database?
+- Oh yeah, that's right, a POST.
+```app.post()```
+- Now what's the route going to be? It's up to you! '/' is always easy, and since it's a different HTTP method it won't get confused with your GET to the same route.
+```app.post('/')```
+- WHAT DOES EVERY ROUTE TAKE AS A SECOND ARGUMENT?!
+- AN ANONYMOUS FUNCTION THAT TAKES TWO PARAMETERS, REQUEST AND RESPONSE (and sometimes next)
+```app.post('/', (request, response) => {})```
+- From the client, something is going to have to be passed in the request body for entry in the database.
 
 
 ## Wednesday
