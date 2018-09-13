@@ -51,7 +51,25 @@ Head back over to your app.js!
         .then(response.status(201)
    }
 ```
+- WOO! TEST IT! ALL GOOD? ADD. COMMIT. PUSH.
+---
 
+### Delete Query
+
+Now for a nice delete request
+
+- Head back to your queries file and make another query called 'delete()', and pass in 'id'.
+- Same as the other routes, we're going to start the logic of our function with 'return database' statement and pass in the table
+- Then we'll describe WHERE it should be looking (where the 'id' column is equal to id)
+- Next we'll DELETE it
+```javascript
+   delete(id){
+    return database('students')
+      .where('id', id)
+      .delete()
+  }
+```
+- That's it! Starting to see a pattern of how these queries are working?
 
 
 ## Wednesday
