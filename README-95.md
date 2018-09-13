@@ -36,7 +36,22 @@ Head back over to your app.js!
 - WHAT DOES EVERY ROUTE TAKE AS A SECOND ARGUMENT?!
 - AN ANONYMOUS FUNCTION THAT TAKES TWO PARAMETERS, REQUEST AND RESPONSE (and sometimes next)
 ```app.post('/', (request, response) => {})```
-- From the client, something is going to have to be passed in the request body for entry in the database.
+- From the client, something is going to have to be passed in the request body for entry in the database, so we'll pass the request body into the query we call.
+```javascript
+  app.post('/', (request, response) => {
+    queries.create(request.body)
+  }
+```
+- That should insert the thing into the table, but we still need to let the client know that everything went smoothly.
+- If you tagged that ```.returning('*')``` onto the end of the query, we can send a status and that array (returning returns an array) back to the client.
+- Otherwise, we can just send a nice [201](https://http.cat/201) status back.
+```javascript
+   app.post('/', (request, response) => {
+      queries.create(request.body)
+        .then(response.status(201)
+   }
+```
+
 
 
 ## Wednesday
