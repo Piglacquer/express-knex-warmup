@@ -1,11 +1,38 @@
 # g95-Database
 ## Welcome to the step-by-step instructions for building our very own g95 database and server with Node, Express, Knex, and Postgresql!
 
+## Thursday
+
+And for this fine day of Thursday, we're going to write two different queries and the routes to use them!
+
+---
+
+### Query for Post (Insert)
+
+Let's start with the query to 'insert' something into our table.
+- Head to your queries file and make a new query function called ```create(){}```
+- This function needs to take a parameter so that it has something to insert into the students table, call it what you will.
+  ```create(callItWhatYouWill){}```
+- Inside of the curlies, we __always__ start with _return_.
+- Similar to the other two routes, we want to ```return database('students')``` but we want to 'insert' the thing we're passing into the query into the table.
+```javascript
+  create(callItWhatYouWill){
+    return database('students')
+      .insert(callItWhatYouWill)
+```
+- Boom, query done.
+- If, by any chance, you wanted to return the object you're inserting into the table, you can tag a ```returning('*')``` onto the end.
+---
+
+### Route for Post
+
+
+
 ## Wednesday
 
 Today we're going to start by creating some student data objects, changing our migrations, and adding to our seeds.
   - First thing first, everyone should create an object for themselves and slack it out in ONE thread.
-  - Here's the format should be:
+  - Here's what the format should be:
     ```{firstName: '', lastName: '', hometown: '', prevOccupation: '', favoriteNum: int, pastime: ''}```
   - Once you've done that and you're all caught up with what we did yesterday, it's time to change our seeds and migrations to match this new data format.
   - When changing your migration, remember that we HAVE to have an id:
@@ -33,7 +60,12 @@ Today we're going to start by creating some student data objects, changing our m
     ```read(firstName){}```
   - In this query, we're going to want to return the entity in the table where firstName is equal to firstName
   - Using the resources I added for writing queries (in the Writing Queries section), and the knowledge you have about basic query structure, finish this one on your own.
-  - I will add a code snippet later on.
+  ```javascript
+       read(firstName){
+        return database('students')
+          .where('firstName', firstName)
+       }
+  ```
   
   ### Get By Name Route
   We've written our query, so let's go back to our app.js and make use of it!
