@@ -70,7 +70,36 @@ Now for a nice delete request
   }
 ```
 - That's it! Starting to see a pattern of how these queries are working?
+---
 
+### Delete Route
+
+On to the route to handle the request and use the queries to do our/the clients bidding!
+
+- Back to your app.js!
+- We need to create a new route, this one will look _similar_ to the get by firstName route.
+- What HTTP method are we going to use to delete?
+- DELETE!
+```app.delete()```
+- Since this looks similar to our get by firstName route, but we're using the id, what do you think the route should be?
+```app.delete('/:id')```
+- Then we do the same thing we've done for every route, pass a second argument that is an anonymous function that takes in request and response as it's parameters
+- When we call our query in this route, what are we going to pass in? What's that thing called that we pass dynamically into the URL?
+- REQUEST.PARAMS
+- What's the name of the param that we want in there? ID! Why? BECAUSE WE CALLED IT ID!
+```javascript
+  app.delete('/id', (request, response) => {
+    queries.delete(request.params.id)
+  }
+```
+- Then we can send back a status to the client letting everyone know that whatever the wanted deleted has been erased.
+- That'll be a [204](https://http.cat/204) status code, indicating that there is no longer any content.
+- Go ahead and send that status code in a '.then()'
+- SAVE, TEST IT.
+- Does it work? SAME AS ALWAYS: ADD, COMMIT, PUSH!!!
+ ---
+
+That's all for today!
 
 ## Wednesday
 
