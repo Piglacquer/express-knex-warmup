@@ -29,6 +29,7 @@ We have our query setup, so lets make a new route that looks similar to the 'get
     queries.updateStudent(request.params.id, request.body).then(data => res.json(data))
   }
 ```
+
 - Test it out! In postman be sure to specify the PUT method, pass the id in the URL, and pass the key:value pairs in the body.
 ---
 
