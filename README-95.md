@@ -25,7 +25,7 @@ We have our query setup, so lets make a new route that looks similar to the 'get
   - Params to specify the id of which item we want to update
   - Body to pass the key:values that we want to update
 ```javascript
-  app.put('/:id, (request, response) => {
+  app.put('/:id', (request, response) => {
     queries.updateStudent(request.params.id, request.body).then(data => res.json(data))
   }
 ```
