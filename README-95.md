@@ -1,6 +1,37 @@
 # g95-Database
 ## Welcome to the step-by-step instructions for building our very own g95 database and server with Node, Express, Knex, and Postgresql!
 
+### Query for Put 
+
+Lets talk about what we need for the put route! 
+- This one will be a bit of an amalgamation of the previous routes because it needs two arguments. 
+- It needs to identify the row it will be changing, and also what to change in the row.
+- Start by creating a new function in your queries file, let's call it updateStudent.
+```updateStudent(id, student){}```
+- Same as with all the other queries, we're going to ```return knex('tableName')```
+- Next we need to tell it where to do the thing ```.where('id', id)```
+- Then update the thing we're going to update! ```.update(student)```
+- That's it! Just pay attention to what you're passing into the query and you should be good.
+- You can also add a returning method or pass returning into the update arguments. Check knex docs for more info.
+  - Pertinent if you want to confirm the change without a get request.
+---
+
+### Route for Put
+
+We have our query setup, so lets make a new route that looks similar to the 'getById/Name'
+- Start out the same as we have for all the other routes, but use a different HTTP method, put.
+```app.put()```
+- For this example we're going to use request params and the request body to update our database.
+  - Params to specify the id of which item we want to update
+  - Body to pass the key:values that we want to update
+```javascript
+  app.put('/:id, (request, response) => {
+    queries.updateStudent(request.params.id, request.body).then(data => res.json(data))
+  }
+```
+- Test it out! In postman be sure to specify the PUT method, pass the id in the URL, and pass the key:value pairs in the body.
+---
+
 ## Thursday
 
 And for this fine day of Thursday, we're going to write two different queries and the routes to use them!
