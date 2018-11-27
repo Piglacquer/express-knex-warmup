@@ -13,7 +13,7 @@
         hometown_long: number,
         useless_superpower: ''
     }
-    ```
+```
 - Put it all in a thread in the class channel. We'll use this as seed data for your database.
 
 ### Project Setup
