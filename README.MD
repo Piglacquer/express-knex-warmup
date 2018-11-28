@@ -1,6 +1,88 @@
 # g102-Database
 ## Welcome to the step-by-step instructions for building our very own g102 database and server with Node, Express, Knex, and Postgresql!
 
+## Wednesday
+Let's start this Wednesday by installing both __body-parser__ and __cors__ into your project. Make sure you require them into your express server and tell it to ```app.use``` them. We'll need body-parser for our post route and cors will be needed once we start making requests to our API from the front-end you'll create on Friday.
+
+
+Now, lets write us some queries!
+
+  ### Get By Id Query
+  - In your queries file, go ahead and make a new query function called 'getById'
+  - getById will take one parameter, id
+    ```getById(id){}```
+  - In this query, we're going to want to return the entity in the table where 'id' is equal to id.
+  - Using the resources I added for writing queries (in the Writing Queries section), and the knowledge you have about basic query structure, finish this one on your own. Don't be afraid to check out the knex docs.
+  ---
+
+  ### Get By ID Route
+  We've written our query, so let's go back to our app.js and make use of it!
+  - Make another get route, but this time we're going to do something a little bit different
+  ```app.get('/:id', (request, response) => {})```
+  - Notice the difference? There's now a colon in our route, this is allows us to access that piece of the url and pass it into our query
+  - To see this, I just want you to console.log(request.params) within that route.
+  ```app.get('/:id', (request, response) => console.log(request.params)```
+  - Run it, and in the browser, go to localhost:yourPort/asdf
+  - Check the console, and you should see something like this: ```{id: asdf}```
+  - Guess how we can use this in our query!!!!
+  - Delete your console.log, bring in the new query you wrote, and pass it ```req.params.id```
+  - Follow the pattern from the previous get route!
+  - Once you're done, go to localhost:yourPort/1 and see if it works!
+  - If all went well, you should now be able to grab a student by their id!!!
+  - WOO! Add, commit, push. 💅💅💅
+  - Now deploy to heroku 📸
+  ---
+
+### Query for Post (Insert)
+
+Let's write query to 'insert' something into our table.
+- Head to your queries file and make a new query function called ```createStudent(){}```
+- This function needs to take a parameter so that it has something to insert into the students table, call it what you will.
+  ```createStudent(callItWhatYouWill){}```
+- Inside of the curlies, we __always__ start with _return_.
+- Similar to the other two routes, we want to ```return database('students')``` but we want to 'insert' the thing we're passing into the query into the table.
+```javascript
+  createStudent(callItWhatYouWill){
+    return database('students')
+      .insert(callItWhatYouWill)
+```
+- Boom, query done.
+- If, by any chance, you wanted to return the object you're inserting into the table, you can tag a ```.returning('*')``` onto the end.
+---
+
+### Route for Post
+
+Head back over to your app.js!
+
+- What HTTP method do we use to add to a server or database?
+- Oh yeah, that's right, a POST.
+```app.post()```
+- Now what's the route going to be? It's up to you! '/' is always easy, and since it's a different HTTP method it won't get confused with your GET to the same route.
+```app.post('/')```
+- WHAT DOES EVERY ROUTE TAKE AS A SECOND ARGUMENT?!
+- AN ANONYMOUS FUNCTION THAT TAKES TWO PARAMETERS, REQUEST AND RESPONSE (and, if you want, next)
+```app.post('/', (request, response) => {})```
+- From the client, something is going to have to be passed in the request body for entry in the database, so we'll pass the request body into the query we call.
+```javascript
+  app.post('/', (request, response) => {
+    queries.createStudent(request.body)
+  }
+```
+- That should insert the thing into the table, but we still need to let the client know that everything went smoothly.
+- If you tagged that ```.returning('*')``` onto the end of the query, we can send a status and that array (```returning``` returns an array) back to the client.
+- Otherwise, we can just send a nice [201](https://http.cat/201) status back.
+```javascript
+   app.post('/', (request, response) => {
+      queries.create(request.body)
+        .then(response.status(201))
+   }
+```
+- WOO! TEST IT! ALL GOOD? ADD. COMMIT. PUSH.
+- DEPLOY IT TO HEROKU AND SEE IF IT WORKS! How do you see if it works? Postman. If you haven't used Postman yet, we can do a breakout on it.
+---
+
+🛥🌮👼
+
 ## Tuesday
   We're going to start off by creating a student object for each and every one of you.
   - The format should be like this:
@@ -107,6 +189,7 @@
       entityInTable.increments('id')
     }
   ```
+  - Go ahead and add all the fields for each student object, INCLUDING an id.
 #### exports.down
 - Inside of your exports.down, you'll need to write the code to drop a table. If you ever need to undo your migration, this is the line that'll do it.
 - The syntax looks similar to what you wrote in your exports.up function.
