@@ -11,7 +11,7 @@ Now, lets write us some queries!
   - In your queries file, go ahead and make a new query function called 'getById'
   - getById will take one parameter, id
     ```getById(id){}```
-  - In this query, we're going to want to return the entity in the table where 'id' is equal to id.
+  - In this query, we're going to want to return the entity in the table where 'id' (the column/attribute) is equal to id (the parameter).
   - Using the resources I added for writing queries (in the Writing Queries section), and the knowledge you have about basic query structure, finish this one on your own. Don't be afraid to check out the knex docs.
   ---
 
