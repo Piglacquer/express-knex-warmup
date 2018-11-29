@@ -7,12 +7,12 @@
 
 Now for a nice delete request
 
-- Head back to your queries file and make another query called 'delete()', and pass in 'id'.
+- Head back to your queries file and make another query called 'deleteStudent()', and pass in 'id'.
 - Same as the other routes, we're going to start the logic of our function with 'return database' statement and pass in the table
 - Then we'll describe WHERE it should be looking (where the 'id' column is equal to id)
 - Next we'll DELETE it
 ```javascript
-   delete(id){
+   deleteStudent(id){
     return database('students')
       .where('id', id)
       .delete()
@@ -38,7 +38,7 @@ On to the route to handle the request and use the queries to do our/the clients 
 - What's the name of the param that we want in there? ID! Why? BECAUSE WE CALLED IT ID!
 ```javascript
   app.delete('/id', (request, response) => {
-    queries.delete(request.params.id)
+    queries.deleteStudent(request.params.id)
   }
 ```
 - Then we can send back a status to the client letting everyone know that whatever the wanted deleted has been erased.
