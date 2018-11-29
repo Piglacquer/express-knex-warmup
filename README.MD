@@ -1,6 +1,91 @@
 # g102-Database
 ## Welcome to the step-by-step instructions for building our very own g102 database and server with Node, Express, Knex, and Postgresql!
 
+## Thursday
+
+### Delete Query
+
+Now for a nice delete request
+
+- Head back to your queries file and make another query called 'delete()', and pass in 'id'.
+- Same as the other routes, we're going to start the logic of our function with 'return database' statement and pass in the table
+- Then we'll describe WHERE it should be looking (where the 'id' column is equal to id)
+- Next we'll DELETE it
+```javascript
+   delete(id){
+    return database('students')
+      .where('id', id)
+      .delete()
+  }
+```
+- That's it! Starting to see a pattern of how these queries are working?
+---
+
+### Delete Route
+
+On to the route to handle the request and use the queries to do our/the clients bidding!
+
+- Back to your app.js!
+- We need to create a new route, this one will look _similar_ to the get by firstName route.
+- What HTTP method are we going to use to delete?
+- DELETE!
+```app.delete()```
+- Since this looks similar to our get by firstName route, but we're using the id, what do you think the route should be?
+```app.delete('/:id')```
+- Then we do the same thing we've done for every route, pass a second argument that is an anonymous function that takes in request and response as it's parameters
+- When we call our query in this route, what are we going to pass in? What's that thing called that we pass dynamically into the URL?
+- REQUEST.PARAMS
+- What's the name of the param that we want in there? ID! Why? BECAUSE WE CALLED IT ID!
+```javascript
+  app.delete('/id', (request, response) => {
+    queries.delete(request.params.id)
+  }
+```
+- Then we can send back a status to the client letting everyone know that whatever the wanted deleted has been erased.
+- That'll be a [204](https://http.cat/204) status code, indicating that there is no longer any content.
+- Go ahead and send that status code in a '.then()'
+- SAVE, TEST IT.
+- Does it work? SAME AS ALWAYS: ADD, COMMIT, PUSH!!!
+ ---
+
+### Update Query
+
+Lets talk about what we need for the put route! 
+- This one will be a bit of an amalgamation of the previous routes because it needs two arguments. 
+- It needs to identify the row it will be changing, and also what to change in the row.
+- Start by creating a new function in your queries file, let's call it updateStudent.
+```updateStudent(id, student){}```
+- Same as with all the other queries, we're going to ```return knex('tableName')```
+- Next we need to tell it where to do the thing ```.where('id', id)```
+- Then update the thing we're going to update! ```.update(student)```
+- That's it! Just pay attention to what you're passing into the query and you should be good.
+- You can also add a returning method or pass returning into the update arguments. Check knex docs for more info.
+  - Pertinent if you want to confirm the change without a get request.
+---
+
+### Put Route for Update
+
+We have our query setup, so lets make a new route that looks similar to the 'getById/Name'
+- Start out the same as we have for all the other routes, but use a different HTTP method, put.
+```app.put()```
+- For this example we're going to use request params and the request body to update our database.
+  - Params to specify the id of which item we want to update
+  - Body to pass the key:values that we want to update
+```javascript
+  app.put('/:id', (request, response) => {
+    queries.updateStudent(request.params.id, request.body).then(data => res.json(data))
+  }
+```
+
+- Test it out! In postman be sure to specify the PUT method, pass the id in the URL, and pass the key:value pairs in the body.
+---
+
+YOU DID IT!!!! YOU NOW HAVE A FULLY FUNCTIONING CRUD BACKEND USING NODE, EXPRESS, POSTGRESQL, AND KNEX!!!! YOU'RE AWESOME! A WIZARD, SOME MIGHT SAY!!!
+
+NOW ADD, COMMIT (WRITE A MEANINGFUL COMMIT MESSAGE, DAMMIT), AND PUSH! THEN PUSH TO HEROKU! AHHHHH!!!!
+
+
+
 ## Wednesday
 Let's start this Wednesday by installing both __body-parser__ and __cors__ into your project. Make sure you require them into your express server and tell it to ```app.use``` them. We'll need body-parser for our post route and cors will be needed once we start making requests to our API from the front-end you'll create on Friday.
 
