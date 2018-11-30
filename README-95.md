@@ -120,7 +120,7 @@ On to the route to handle the request and use the queries to do our/the clients 
 - REQUEST.PARAMS
 - What's the name of the param that we want in there? ID! Why? BECAUSE WE CALLED IT ID!
 ```javascript
-  app.delete('/id', (request, response) => {
+  app.delete('/:id', (request, response) => {
     queries.delete(request.params.id)
   }
 ```
