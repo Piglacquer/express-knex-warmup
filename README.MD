@@ -272,7 +272,7 @@ Head back over to your app.js!
   ```javascript
     return knex.schema.createTable('table_name', (entityInTable) => {
       entityInTable.increments('id')
-    }
+    })
   ```
   - Go ahead and add all the fields for each student object, INCLUDING an id.
 #### exports.down
